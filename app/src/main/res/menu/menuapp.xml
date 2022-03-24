@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menuButton"
+        android:icon="@drawable/today"
+        android:title="Menu" />
+    <item
+        android:id="@+id/postButton"
+        android:icon="@drawable/add"
+        android:title="Publicar" />
+    <item
+        android:id="@+id/profileButton"
+        android:icon="@drawable/manage"
+        android:title="Perfil" />
+</menu>

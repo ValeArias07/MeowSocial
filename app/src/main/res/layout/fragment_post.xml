@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/postImageView"
+        android:layout_width="163dp"
+        android:layout_height="164dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="110dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img"
+        tools:src="@drawable/img" />
+
+    <Button
+        android:id="@+id/galeryButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="32dp"
+        android:text="Galería"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/postImageView" />
+
+    <Button
+        android:id="@+id/camaraButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="84dp"
+        android:text="Cámara"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/postImageView" />
+
+    <Button
+        android:id="@+id/pustItButton"
+        android:layout_width="206dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:layout_marginBottom="112dp"
+        android:text="Publicar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dscrptnText"
+        app:layout_constraintVertical_bias="0.069" />
+
+    <EditText
+        android:id="@+id/dscrptnText"
+        android:layout_width="240dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="172dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Escribe una descripcion"
+        android:inputType="textMultiLine"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/videoNameText"
+        app:layout_constraintVertical_bias="0.22" />
+
+    <EditText
+        android:id="@+id/videoNameText"
+        android:layout_width="244dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="112dp"
+        android:ems="10"
+        android:hint="Nombre de video"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/postImageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
