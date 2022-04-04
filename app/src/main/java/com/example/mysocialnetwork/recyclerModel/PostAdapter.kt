@@ -1,10 +1,12 @@
-package com.example.mysocialnetwork
+package com.example.mysocialnetwork.recyclerModel
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mysocialnetwork.R
 import com.example.mysocialnetwork.databinding.PostBinding
+import com.example.mysocialnetwork.model.Post
 
 class PostAdapter : RecyclerView.Adapter<PostView>() {
 
@@ -13,6 +15,12 @@ class PostAdapter : RecyclerView.Adapter<PostView>() {
 
     fun addPost(post: Post){
         posts.add(post)
+    }
+
+    fun setArray(post: ArrayList<Post>){
+        for(num in 0..post.size-1){
+            posts.add(post.get(num))
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostView {
@@ -30,6 +38,11 @@ class PostAdapter : RecyclerView.Adapter<PostView>() {
         skeleton.nameText.text = post.userName
         skeleton.descriptionText.text = post.description
         skeleton.namePost.text = post.postName
+        skeleton.datePost.text = post.postDate
+        skeleton.locationText.text = post.postCity
+
+        //skeleton.uri = post.postImage
+        //skeleton.postImageView = ImageView.setImageURI(post.postImage)
     }
 
     override fun getItemCount(): Int {

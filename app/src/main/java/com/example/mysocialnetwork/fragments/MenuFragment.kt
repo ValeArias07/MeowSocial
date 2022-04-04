@@ -1,4 +1,4 @@
-package com.example.mysocialnetwork
+package com.example.mysocialnetwork.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,10 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mysocialnetwork.MenuFragment.*
 import com.example.mysocialnetwork.databinding.FragmentMenuBinding
-import com.example.mysocialnetwork.databinding.FragmentPostBinding
-import com.example.mysocialnetwork.databinding.MenuBinding
+import com.example.mysocialnetwork.model.Post
+import com.example.mysocialnetwork.recyclerModel.PostAdapter
 
 
 class MenuFragment : Fragment(), PostFragment.OnNewPostListener {
@@ -47,5 +46,8 @@ class MenuFragment : Fragment(), PostFragment.OnNewPostListener {
         adapter.addPost(post)
     }
 
+    fun setArray(posts: ArrayList<Post>){
+        adapter.setArray(posts)
+    }
 
 }

@@ -1,5 +1,48 @@
 <resources>
     <string name="app_name">MySocialNetwork</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="cities">
+        <item>Apartado                  </item>
+        <item>Arauca</item>
+        <item>Armenia</item>
+        <item>Barrancabermeja</item>
+        <item>Barranquilla</item>
+        <item>Bogotá</item>
+        <item>Bucaramanga</item>
+        <item>Buenaventura</item>
+        <item>Cali</item>
+        <item>Cartagena</item>
+        <item>Cucuta</item>
+        <item>Florencia</item>
+        <item>Gaviotas</item>
+        <item>Ibague</item>
+        <item>Ipiales</item>
+        <item>Lebrija</item>
+        <item>Leticia</item>
+        <item>Manizales</item>
+        <item>Medellín</item>
+        <item>Mitu</item>
+        <item>Mocoa</item>
+        <item>Monteria</item>
+        <item>Neiva</item>
+        <item>Palmira</item>
+        <item>Pasto</item>
+        <item>Pereira</item>
+        <item>Popayan</item>
+        <item>Providencia</item>
+        <item>Puerto Carreno</item>
+        <item>Puerto Inirida</item>
+        <item>Quibdó</item>
+        <item>Riohacha</item>
+        <item>Rionegro</item>
+        <item>San Andres</item>
+        <item>San José Del Guaviare</item>
+        <item>Santa Marta</item>
+        <item>Sincelejo</item>
+        <item>Tumaco</item>
+        <item>Tunja</item>
+        <item>Valledupar</item>
+        <item>Villavicencio</item>
+        <item>Yopal</item>
+    </string-array>
 </resources>

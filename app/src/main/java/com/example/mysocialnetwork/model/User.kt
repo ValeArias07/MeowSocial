@@ -1,4 +1,4 @@
-package com.example.mysocialnetwork
+package com.example.mysocialnetwork.model
 
 import java.nio.file.Paths.get
 
