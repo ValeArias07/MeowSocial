@@ -15,7 +15,7 @@ class PostView(itemView: View) : RecyclerView.ViewHolder(itemView) {
     /// UI Components
     var nameText: TextView = itemView.findViewById(R.id.nameText)
     var descriptionText: TextView = itemView.findViewById(R.id.descriptionText)
-    var namePost: TextView = itemView.findViewById(R.id.namePost)
+    //var namePost: TextView = itemView.findViewById(R.id.namePost)
     var datePost: TextView = itemView.findViewById(R.id.dateText)
     var locationText: TextView = itemView.findViewById(R.id.locationText)
     var postImageView: ImageView = itemView.findViewById(R.id.postImage)

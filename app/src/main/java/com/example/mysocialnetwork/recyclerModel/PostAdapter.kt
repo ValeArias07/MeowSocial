@@ -37,7 +37,7 @@ class PostAdapter : RecyclerView.Adapter<PostView>() {
         skeleton.post = post
         skeleton.nameText.text = post.userName
         skeleton.descriptionText.text = post.description
-        skeleton.namePost.text = post.postName
+        //skeleton.namePost.text = post.postName
         skeleton.datePost.text = post.postDate
         skeleton.locationText.text = post.postCity
 
