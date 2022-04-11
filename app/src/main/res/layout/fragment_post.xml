@@ -8,8 +8,8 @@
     android:layout_height="match_parent">
 
     <ScrollView
-        android:layout_width="404dp"
-        android:layout_height="593dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,7 +17,7 @@
         tools:ignore="MissingConstraints">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,78 +28,112 @@
                 android:id="@+id/postImageView"
                 android:layout_width="match_parent"
                 android:layout_height="213dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/img"
                 tools:src="@drawable/img" />
 
-            <Button
-                android:id="@+id/pustItButton"
-                android:layout_width="206dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="76dp"
-                android:text="Publicar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dscrptnText" />
-
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="213dp"
                 android:layout_height="37dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintHorizontal_bias="0.515"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dscrptnText" />
-
-            <EditText
-                android:id="@+id/videoNameText"
-                android:layout_width="wrap_content"
-                android:layout_height="49dp"
-                android:layout_marginTop="67dp"
-                android:ems="10"
-                android:hint="Nombre de video"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/postImageView" />
+                app:layout_constraintTop_toBottomOf="@+id/galeryButton" />
 
             <EditText
                 android:id="@+id/dscrptnText"
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="15dp"
                 android:ems="10"
                 android:gravity="start|top"
                 android:hint="Escribe una descripcion"
                 android:inputType="textMultiLine"
                 android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.507"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/videoNameText" />
+                app:layout_constraintTop_toBottomOf="@+id/postImageView" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="37dp"
+                android:layout_height="34dp"
+                android:elevation="100dp"
+                app:layout_constraintBottom_toBottomOf="@+id/camaraButton"
+                app:layout_constraintEnd_toEndOf="@+id/camaraButton"
+                app:layout_constraintStart_toStartOf="@+id/camaraButton"
+                app:layout_constraintTop_toTopOf="@+id/camaraButton"
+                app:srcCompat="@drawable/camera" />
 
             <Button
                 android:id="@+id/camaraButton"
-                android:layout_width="99dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="4dp"
-                android:text="Cámara"
-                app:layout_constraintEnd_toEndOf="@+id/videoNameText"
-                app:layout_constraintTop_toBottomOf="@+id/postImageView" />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView5"
+                app:layout_constraintTop_toBottomOf="@+id/dscrptnText" />
 
             <Button
                 android:id="@+id/galeryButton"
-                android:layout_width="98dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
-                android:text="Galería"
-                app:layout_constraintStart_toStartOf="@+id/videoNameText"
-                app:layout_constraintTop_toBottomOf="@+id/postImageView" />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/dscrptnText" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="108dp"
+                android:text="Sube una imagen: "
+                android:textSize="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/dscrptnText"
+                app:layout_constraintTop_toBottomOf="@+id/dscrptnText" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="37dp"
+                android:layout_height="36dp"
+                android:elevation="100dp"
+                app:layout_constraintBottom_toBottomOf="@+id/galeryButton"
+                app:layout_constraintEnd_toEndOf="@+id/galeryButton"
+                app:layout_constraintStart_toStartOf="@+id/galeryButton"
+                app:layout_constraintTop_toTopOf="@+id/galeryButton"
+                app:srcCompat="@drawable/image" />
+
+            <Button
+                android:id="@+id/pustItButton"
+                android:layout_width="206dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="20dp"
+                android:text="Publicar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ciudad"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toTopOf="@+id/spinner"
+                app:layout_constraintEnd_toEndOf="@+id/spinner"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/spinner" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

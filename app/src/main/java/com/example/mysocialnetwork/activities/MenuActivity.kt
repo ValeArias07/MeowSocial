@@ -2,24 +2,30 @@ package com.example.mysocialnetwork.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.mysocialnetwork.R
 import com.example.mysocialnetwork.databinding.MenuBinding
+
 import com.example.mysocialnetwork.fragments.MenuFragment
 import com.example.mysocialnetwork.fragments.PostFragment
 import com.example.mysocialnetwork.fragments.ProfileFragment
+import com.example.mysocialnetwork.fragments.ProfileFragment.OnUserChanges
 import com.example.mysocialnetwork.model.Post
 import com.example.mysocialnetwork.model.Posts
+import com.example.mysocialnetwork.model.User
 import com.example.mysocialnetwork.model.Users
 import com.google.gson.Gson
 
-class MenuActivity : AppCompatActivity(), PostFragment.OnNewPostListener  {
+class MenuActivity : AppCompatActivity(), PostFragment.OnNewPostListener, ProfileFragment.OnUserChanges  {
 
     private lateinit var binding: MenuBinding
     private lateinit var postFragment: PostFragment
     private lateinit var profileFragment: ProfileFragment
     private lateinit var menuFragment: MenuFragment
     private lateinit var posts: Posts
+    private lateinit var user: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +34,7 @@ class MenuActivity : AppCompatActivity(), PostFragment.OnNewPostListener  {
         setContentView(view)
 
         posts = Posts(ArrayList<Post>())
-        var user = intent.extras?.getString("currentUser")
+        user = intent.extras?.getString("currentUser").toString()
 
         menuFragment = MenuFragment.newInstance()
         postFragment = PostFragment.newInstance(user)
@@ -37,18 +43,25 @@ class MenuActivity : AppCompatActivity(), PostFragment.OnNewPostListener  {
 
         postFragment.listenerAdapter = menuFragment
         postFragment.listenerActivity = this
+        profileFragment.listenerMenu = this
+        profileFragment.listenerPost = postFragment
         loadPosts()
         showFragment(menuFragment)
 
         binding.mppNavigationView.setOnItemSelectedListener{ menuItem->
             if(menuItem.itemId== R.id.menuButton){
                 showFragment(menuFragment)
-            }else if(menuItem.itemId== R.id.postButton){
-                showFragment(postFragment)
+                binding.postButton.show()
             }else if(menuItem.itemId== R.id.profileButton){
                 showFragment(profileFragment)
+                binding.postButton.hide()
             }
             true
+        }
+
+        binding.postButton.setOnClickListener{
+            showFragment(postFragment)
+            binding.postButton.hide()
         }
     }
 
@@ -77,5 +90,13 @@ class MenuActivity : AppCompatActivity(), PostFragment.OnNewPostListener  {
         sharedPref.edit()
             .putString("posts", gson.toJson(posts))
             .apply()
+    }
+
+    override fun changeUser(name: String) {
+        val gson = Gson()
+        val currentUser = gson.fromJson(user, User::class.java)
+        currentUser.setingName(name)
+        Log.e(">>>>", currentUser.name)
+        user = gson.toJson(currentUser)
     }
 }

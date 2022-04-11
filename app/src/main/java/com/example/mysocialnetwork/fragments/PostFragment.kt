@@ -1,19 +1,26 @@
 package com.example.mysocialnetwork.fragments
 
+import android.content.ContextWrapper
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.example.mysocialnetwork.R
+
+
 import com.example.mysocialnetwork.databinding.FragmentPostBinding
 import com.example.mysocialnetwork.databinding.SpinnerBinding
 import com.example.mysocialnetwork.model.Post
@@ -25,15 +32,16 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 private const val ARG_PARAM1 = "param1"
-class PostFragment() : Fragment() {
+class PostFragment() : Fragment() , ProfileFragment.OnUserChanges {
 
     var listenerAdapter: OnNewPostListener? = null
     var listenerActivity: OnNewPostListener? = null
     private var _binding: FragmentPostBinding? = null
     private val binding get() = _binding!!
-    private lateinit var currentUser: User
+    var currentUser : User? = null
     private lateinit var file: File
-    private lateinit var uriImg: Uri
+    private lateinit var path: String
+    var name: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,21 +70,41 @@ class PostFragment() : Fragment() {
             galLauncher.launch(i)
         }
 
+        val camLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), ::onCamResult)
+        binding.camaraButton.setOnClickListener{
+            val i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            file = File("${requireContext().getExternalFilesDir(null)}/photo.png")
+            val uri = FileProvider.getUriForFile(requireContext(),"com.example.mysocialnetwork", file)
+            i.putExtra(MediaStore.EXTRA_OUTPUT,uri)
+
+            camLauncher.launch(i)
+        }
+        
+
         binding.pustItButton.setOnClickListener {
             val dateLabel = configDateLabel()
             val city =binding.spinner.selectedItem.toString()+", Colombia"
-            var post = Post(
-                currentUser.name, binding.dscrptnText.text.toString(), binding.videoNameText.text.toString(), dateLabel, "", city
-            )
+            checkname()
+            var post = Post(currentUser!!.name, "" , binding.dscrptnText.text.toString(), dateLabel, city,path, currentUser!!.default)
+
             listenerAdapter?.let {
                 it.addPost(post)
             }
             listenerActivity?.let{
                 it.addPost(post)
             }
+            binding.dscrptnText.setText("")
+            binding.postImageView.setImageResource(R.drawable.img)
         }
         return binding.root
     }
+
+    private fun checkname(){
+        if(name!=""){
+            currentUser!!.setingName(name)
+        }
+    }
+
 
     private fun createSpinner() {
         var list = resources.getStringArray(R.array.cities)
@@ -117,10 +145,22 @@ class PostFragment() : Fragment() {
 
     private fun onGalleryResult(activityResult: ActivityResult) {
         val uri = activityResult.data?.data
-        val path = UtilDomi.getPath(requireContext(), uri!!)
-        val bitmap = BitmapFactory.decodeFile(path)
+        val pathI = UtilDomi.getPath(requireContext(), uri!!)
+        path = pathI.toString()
+        val bitmap = BitmapFactory.decodeFile(pathI)
         binding.postImageView.setImageURI(uri)
+    }
 
+    private fun onCamResult(activityResult: ActivityResult) {
+        path = file.path.toString()
+        val bitmap = BitmapFactory.decodeFile(file?.path)
+        val thumbnail = Bitmap.createScaledBitmap(bitmap,
+            bitmap.width/8, bitmap.height/8, true)
+        binding.postImageView.setImageBitmap(thumbnail)
+    }
+
+    override fun changeUser(name: String) {
+         this.name = name
     }
 }
 

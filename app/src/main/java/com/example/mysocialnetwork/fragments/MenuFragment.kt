@@ -29,6 +29,8 @@ class MenuFragment : Fragment(), PostFragment.OnNewPostListener {
         postRecycler.layoutManager = LinearLayoutManager(activity)
         postRecycler.adapter = adapter
 
+
+
         return binding.root
     }
 
@@ -49,5 +51,7 @@ class MenuFragment : Fragment(), PostFragment.OnNewPostListener {
     fun setArray(posts: ArrayList<Post>){
         adapter.setArray(posts)
     }
+
+
 
 }

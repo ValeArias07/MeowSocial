@@ -1,5 +1,10 @@
 <paths>
     <external-path
         name="/storage/emulated/0"
-        path="/Android/data/edu.co.icesi.MySocialNetwork/files"/>
+        path="/Android/data/com.example.mysocialnetwork/ files"/>
+
+    <external-path
+        name="my_images"
+        path="/Android/data/com.example.mysocialnetwork/files" />
+
 </paths>

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.example.mysocialnetwork.activities.MainActivity
 import com.example.mysocialnetwork.activities.MenuActivity
 import com.example.mysocialnetwork.databinding.FragmentProfileBinding
+import com.example.mysocialnetwork.model.Post
 import com.example.mysocialnetwork.model.User
 import com.google.gson.Gson
 
@@ -19,6 +20,8 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private lateinit var currentUser: User
+    var listenerMenu: ProfileFragment.OnUserChanges? = null
+    var listenerPost: ProfileFragment.OnUserChanges? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +30,10 @@ class ProfileFragment : Fragment() {
             var json = it.getString(ARG_PARAM1).toString()
             currentUser = gson.fromJson(json, User::class.java)
         }
+    }
+
+    fun changeCurrentUser(name: String){
+        currentUser.name = name
     }
 
     override fun onCreateView(
@@ -39,7 +46,17 @@ class ProfileFragment : Fragment() {
         binding.nameBoxProfile.setText(currentUser.name)
 
         binding.editProfileButton.setOnClickListener {
-            currentUser.name = binding.nameBoxProfile.toString()
+
+            var name = binding.nameBoxProfile.text.toString()
+
+            listenerMenu?.let {
+                it.changeUser(name)
+            }
+
+            listenerPost?.let {
+                it.changeUser(name)
+            }
+
         }
 
         val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), ::onResult)
@@ -71,5 +88,11 @@ class ProfileFragment : Fragment() {
                 }
             }
     }
+
+
+    interface OnUserChanges {
+        fun changeUser(name: String)
+    }
+
 }
 

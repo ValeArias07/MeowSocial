@@ -1,7 +1,10 @@
 package com.example.mysocialnetwork.activities
 
+import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +15,10 @@ import com.example.mysocialnetwork.databinding.MainActivityBinding
 import com.example.mysocialnetwork.model.User
 import com.example.mysocialnetwork.model.Users
 import com.google.gson.Gson
+import android.provider.MediaStore
+import androidx.core.content.FileProvider
+import edu.co.icesi.MySocialNetwork.UtilDomi
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: MainActivityBinding
@@ -19,6 +26,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(arrayOf(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA
+            ), 11)
+        }
+
         val sharedPref = getPreferences(MODE_PRIVATE)
         binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -67,9 +84,9 @@ class MainActivity : AppCompatActivity() {
         val userRaw= sharedPref.getString("users", "404")
 
         if(userRaw=="404"){
-            users.userList.add(User("alfa@gmail.com","aplicacionesmoviles","Alfa Arias" ))
-            users.userList.add(User("beta@gmail.com","aplicacionesmoviles","Beta Gomez" ))
-            users.userList.add(User("vale","vale","Vale Gomez" ))
+            users.userList.add(User("alfa@gmail.com","aplicacionesmoviles","Alfa Arias",))
+            users.userList.add(User("beta@gmail.com","aplicacionesmoviles","Beta Gomez"))
+            users.userList.add(User("vale","vale","Vale Gomez"))
             sharedPref.edit()
                 .putString("users", gson.toJson(users))
                 .apply()

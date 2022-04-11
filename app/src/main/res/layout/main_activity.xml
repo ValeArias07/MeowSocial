@@ -55,12 +55,11 @@
             android:id="@+id/imageView"
             android:layout_width="184dp"
             android:layout_height="167dp"
-            android:layout_marginTop="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.541"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/profile" />
+            app:srcCompat="@drawable/logo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
