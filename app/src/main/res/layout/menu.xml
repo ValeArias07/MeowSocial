@@ -34,6 +34,7 @@
         android:id="@+id/mppNavigationView"
         android:layout_width="406dp"
         android:layout_height="67dp"
+        android:background="@color/secondaryTextColor"
         app:elevation="5dp"
         app:itemIconSize="36dp"
         app:itemPaddingBottom="0dp"
